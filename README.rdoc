@@ -1,0 +1,42 @@
+= Redstar
+
+Generates models and migrations including validation for required fields.
+
+== Installation
+
+Add it to your Gemfile:
+
+  gem "redstar", :group => :development
+
+Install using bundle:
+
+  bundle install
+
+== Usage
+
+When generating your models (via model or scaffold generator) append a star (*) to the attribute name on required fields. Example: 
+
+  rails generate model Article title*:string subtitle:string content*:string
+
+The above command generates:
+
+* this model:
+
+  class Article < ActiveRecord::Base
+    validates_presence_of :title
+    validates_presence_of :content
+  end
+
+* and this migration:
+
+  class CreateArticles < ActiveRecord::Migration
+    def change
+      create_table :articles do |t|
+        t.string :title, :null => false
+        t.string :subtitle
+        t.string :content, :null => false
+        t.timestamps
+      end
+    end
+  end
+
