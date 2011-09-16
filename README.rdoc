@@ -22,21 +22,21 @@ The above command generates:
 
 * this model:
 
-  class Article < ActiveRecord::Base
-    validates_presence_of :title
-    validates_presence_of :content
-  end
+    class Article < ActiveRecord::Base
+      validates_presence_of :title
+      validates_presence_of :content
+    end
 
 * and this migration:
 
-  class CreateArticles < ActiveRecord::Migration
-    def change
-      create_table :articles do |t|
-        t.string :title, :null => false
-        t.string :subtitle
-        t.string :content, :null => false
-        t.timestamps
+    class CreateArticles < ActiveRecord::Migration
+      def change
+        create_table :articles do |t|
+          t.string :title, :null => false
+          t.string :subtitle
+          t.string :content, :null => false
+          t.timestamps
+        end
       end
     end
-  end
 
